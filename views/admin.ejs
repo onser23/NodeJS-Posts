@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%-include('./inc/head') %>
+
+</head>
+<body>
+  <%-include('./inc/nav') %>
+<section>
+  <a href="/admin/add">Elave et</a>
+    <h1>Yazilar</h1>
+    <ul>
+        <% blogs.map((res)=> { %>
+            <li>
+                <p><%=res.title %></p>
+                <a href="#" class="del" data-doc="<%=res._id%>">Sil</a>
+            </li>
+    <%    }) 
+    %>
+
+        
+       
+       
+    </ul>
+</section>
+<script>
+ const delLinks = document.querySelectorAll('a.del');
+
+delLinks.forEach((del) => {
+  del.addEventListener('click', (e) => {
+    e.preventDefault();
+    const endpoint = `/admin/delete/${del.dataset.doc}`;
+
+    fetch(endpoint, { method: 'DELETE' })
+      .then((response) => response.json())
+      .then((data) => {
+        window.location.href = data.link;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+});
+
+</script>
+</body>
+</html>

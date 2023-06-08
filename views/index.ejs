@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%-include('./inc/head') %>
+</head>
+<body>
+  <%-include('./inc/nav') %>
+<section>
+    <h1>Yazilar</h1>
+    <ul>
+        <% blogs.map((res)=> { %>
+            <li>
+                <a href="/blog/<%=res._id %>"><%=res.title %></a>
+                <p><%=res.short %></p>
+            </li>
+    <%    }) 
+    %>
+
+        
+       
+       
+    </ul>
+</section>
+</body>
+</html>
